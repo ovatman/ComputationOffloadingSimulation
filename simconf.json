@@ -1,0 +1,73 @@
+{
+  "stations": {
+    "local": {
+        "proc" : 100000,
+        "_procunit": "MIPS",
+        "opmean" : 2,
+        "opdev" : 1,
+        "_opunit": "SECONDS"
+    },
+    "terrestrial": {
+        "proc" : 1000000,
+        "_procunit": "MIPS",
+        "ul" : 800,
+        "dl" : 800,
+        "_rateunit": "Mbit/s",
+        "dist": 2000,
+        "_distunit": "meters",
+        "opmean" : 2,
+        "opdev" : 1,
+        "_opunit": "SECONDS"
+    },
+    "aerial": {
+        "proc" : 10000000,
+        "_procunit": "MIPS",
+        "dist": 20000,
+        "_distunit": "meters",
+        "opmean" : 2,
+        "opdev" : 1,
+        "_opunit": "SECONDS",
+        "temp" : -20,
+        "_tempunit": "CELCIUS",
+        "bandwidth": 10000000,
+        "_bwunit": "MHz",
+        "carrierfreq": 1000000000,
+        "noise": 1.38,
+        "rice_param": 10,
+        "receive_power" : 10
+    }
+  },
+  "jobs": {
+    "count": 50,
+    "density": 0.05,
+    "interarrival": {
+        "type": "lognormal",
+        "distparam": [5.15,0.5],
+        "_timeunit": "SECONDS"
+    },
+    "tasks": {
+      "type": "pareto",
+      "distparam": [1.517],
+      "psmall": {
+        "type": "lognormal",
+        "distparam": [4.32,1.31],
+        "mixratio": 0.8
+      },
+      "plarge": {
+        "type": "powerlaw",
+        "distparam": [1.5],
+        "mixratio": 0.2
+      },
+      "input": {
+        "type": "lognormal",
+        "distparam": [8.08,2.58],
+        "_sizeunit": "KB"
+      },
+      "output": {
+        "type": "zipf",
+        "distparam": [1.7748],
+        "_sizeunit": "KB"
+      }
+    }
+  }
+}
